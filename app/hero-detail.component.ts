@@ -1,5 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Hero } from './hero';
+import { HeroService } from './hero.service';
+
 
 
 @Component({
@@ -11,9 +13,16 @@ import { Hero } from './hero';
     '<div> <label>name: </label> <input [(ngModel)]="hero.name" placeholder="name"/> </div> ' +
     '</div>',
 
+
 })
 export class HeroDetailComponent {
+    constructor(private heros: HeroService) { }
+
     @Input()
     hero: Hero;
+
+    ngOnInit(): void {
+        this.heros.hello();
+    }
 
 }
